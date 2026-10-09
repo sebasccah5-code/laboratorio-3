@@ -59,6 +59,56 @@ class Program
             Console.WriteLine();
         }
         Console.WriteLine("La suma de todos los numeros es: " + suma);
+
+        // etapa 3 LISTAS DINAMICAS
+
+        Console.WriteLine("ETAPA 3");
+        List<int> listaDinamica = new List<int> {10, 20, 30};
+        int opcion = 0;
+
+        while (opcion != 5)
+        {
+            Console.WriteLine(\n1. insertar al final \n2. Eliminar por posicion \n3. Buscar valor \n4. Mostrar lista \n5. Salir");
+            Console.Write("Elige una opcion: ");
+            opcion = int.Parse(Console.ReadLine());
+
+            if (opcion == 1)
+            {
+                Console.Write("Ingresa el numero a insertar: ");
+                listaDinamica.Add(int.Parse(Console.ReadLine()));
+                Console.WriteLine("Elemento agregado.");
+            }
+            else if (opcion == 2)
+            {
+                Console.Write($"Ingresa la posicion del elemento a eliminar (0 a {listaDinamica.Count - 1}): ");
+                listaDinamica.RemoveAt(int.Parse(Console.ReadLine()));
+                Console.WriteLine("Elemento eliminado.");
+            }
+            else if (opcion == 3)
+            {
+                Console.Write("Ingresa el valor a buscar: ");
+                int posicion = listaDinamica.IndexOf(int.Parse(Console.ReadLine()));
+
+                if (posicion != -1)
+                    Console.WriteLine($"El valor se encuentra en la posicion: {posicion}");
+                else
+                    Console.WriteLine("El valor no existe.");
+            }
+            else if (opcion == 4)
+            {
+                Console.WriteLine("lista actual:");
+                foreach (int item in listaDinamica) Console.WriteLine(item);
+                Console.WriteLine();
+            }
+
+        }
+
+        // etapa 4 ALGORITMOS DE ORDENAMIENTO
+
         
+
+
+         
+
     
     
