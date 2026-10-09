@@ -32,26 +32,33 @@ class Program
 
         if (existe) Console.WriteLine("El numero si existe en el arreglo.");
         else Console.WriteLine("El numero no esta en el arreglo.");
-    }
 
-    static int LeerEntero(string mensaje)
-    {
-        while (true)
+        // etapa 2 ARREGLOS BIDIMENSIONALES
+
+        Console.WriteLine("ETAPA 2");
+        int[,] matriz = new int[3, 3];
+
+        for (int i = 0; i < 3; i++)
         {
-            Console.Write(mensaje);
-            string? entrada = Console.ReadLine();
-
-            if (entrada is null)
+            for (int j = 0; j < 3; j++)
             {
-                throw new InvalidOperationException("No se recibió una entrada.");
+                Console.Write($"Ingresa numero para fila {i}, columna {j}: ");
+                matriz[i, j] = int.Parse(Console.ReadLine());
             }
-
-            if (int.TryParse(entrada, out int numero))
-            {
-                return numero;
-            }
-
-            Console.WriteLine("Entrada no válida. Ingresa un número entero.");
         }
-    }
-}
+
+        Console.WriteLine("\nAsi quedo la matriz:");
+        int suma = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                Console.Write(matriz[i, j] + "\t");
+                suma += matriz[i, j];
+            }
+            Console.WriteLine();
+        }
+        Console.WriteLine("La suma de todos los numeros es: " + suma);
+        
+    
+    
