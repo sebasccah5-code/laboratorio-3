@@ -35,7 +35,7 @@ class Program
 
         // etapa 2 ARREGLOS BIDIMENSIONALES
 
-        Console.WriteLine("ETAPA 2");
+        Console.WriteLine("\n ETAPA 2");
         int[,] matriz = new int[3, 3];
 
         for (int i = 0; i < 3; i++)
@@ -62,7 +62,7 @@ class Program
 
         // etapa 3 LISTAS DINAMICAS
 
-        Console.WriteLine("ETAPA 3");
+        Console.WriteLine("\n ETAPA 3");
         List<int> listaDinamica = new List<int> {10, 20, 30};
         int opcion = 0;
 
@@ -105,7 +105,61 @@ class Program
 
         // etapa 4 ALGORITMOS DE ORDENAMIENTO
 
-        
+        Console.WriteLine("\n ETAPA 4");
+        int[] arregloDesordenado = { 64, 34, 25, 12, 22, 11,90 };
+        int[] arregloBurbuja = (int[])arregloDesordenado.Clone();
+        int[] arregloSeleccion = (int[])arregloDesordenado.Clone();
+
+        Console.WriteLine("Arreglo original:");
+        foreach (int num in arregloDesordenado) Console.Write(num + " ");
+        Console.WriteLine();
+
+        // ordenamiento burbuja
+
+        for (int i = 0; i < arregloBurbuja.Length - 1; i++)
+        {
+            for (int j = 0; j < arregloBurbuja.Length - i - 1; j++)
+            {
+                if (arregloBurbuja[j] > arregloBurbuja[j + 1])
+                {
+                    int temp = arregloBurbuja[j];
+                    arregloBurbuja[j] = arregloBurbuja[j + 1];
+                    arregloBurbuja[j + 1] = temp;
+                }
+            }
+        }
+        Console.WriteLine("Ordenado por burbuja:");
+        foreach (int num in arregloBurbuja) Console.Write(num + " ");
+        Console.WriteLine();
+
+        // ordenamiento por seleccion
+
+        for (int i = 0; i < arregloSeleccion.Length - 1; i++)
+        {
+            int minIndex = i;
+            for (int j = i + 1; j < arregloSeleccion.Length; j++)
+            {
+                if (arregloSeleccion[j] < arregloSeleccion[minIndex])
+                {
+                    minIndex = j;
+                }
+            }
+            int temp = arregloSeleccion[i];
+            arregloSeleccion[i] = arregloSeleccion[minIndex];
+            arregloSeleccion[minIndex] = temp;
+        }
+        Console.WriteLine("Ordenado por seleccion:");
+        foreach (int num in arregloSeleccion) Console.Write(num + " ");
+        Console.WriteLine();
+
+        Console.ReadLine();
+    }
+}
+    
+
+
+
+
 
 
          
