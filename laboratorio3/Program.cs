@@ -1,5 +1,7 @@
 ﻿// laboratorio 3
+
 using System;
+using System.Collections.Generic;
 
 class Program
 {
@@ -42,8 +44,7 @@ class Program
         {
             for (int j = 0; j < 3; j++)
             {
-                Console.Write($"Ingresa numero para fila {i}, columna {j}: ");
-                matriz[i, j] = int.Parse(Console.ReadLine());
+                matriz[i, j] = LeerEntero($"Ingresa numero para fila {i}, columna {j}: ");
             }
         }
 
@@ -68,26 +69,38 @@ class Program
 
         while (opcion != 5)
         {
-            Console.WriteLine(\n1. insertar al final \n2. Eliminar por posicion \n3. Buscar valor \n4. Mostrar lista \n5. Salir");
-            Console.Write("Elige una opcion: ");
-            opcion = int.Parse(Console.ReadLine());
+            Console.WriteLine("\n1. Insertar al final\n2. Eliminar por posicion\n3. Buscar valor\n4. Mostrar lista\n5. Salir");
+            opcion = LeerEntero("Elige una opcion: ");
 
             if (opcion == 1)
             {
-                Console.Write("Ingresa el numero a insertar: ");
-                listaDinamica.Add(int.Parse(Console.ReadLine()));
+                listaDinamica.Add(LeerEntero("Ingresa el numero a insertar: "));
                 Console.WriteLine("Elemento agregado.");
             }
             else if (opcion == 2)
             {
-                Console.Write($"Ingresa la posicion del elemento a eliminar (0 a {listaDinamica.Count - 1}): ");
-                listaDinamica.RemoveAt(int.Parse(Console.ReadLine()));
-                Console.WriteLine("Elemento eliminado.");
+                if (listaDinamica.Count == 0)
+                {
+                    Console.WriteLine("No hay elementos para eliminar.");
+                }
+                else
+                {
+                    int posicionEliminar = LeerEntero($"Ingresa la posicion del elemento a eliminar (0 a {listaDinamica.Count - 1}): ");
+                    if (posicionEliminar >= 0 && posicionEliminar < listaDinamica.Count)
+                    {
+                        listaDinamica.RemoveAt(posicionEliminar);
+                        Console.WriteLine("Elemento eliminado.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("La posicion no es valida.");
+                    }
+                }
             }
             else if (opcion == 3)
             {
-                Console.Write("Ingresa el valor a buscar: ");
-                int posicion = listaDinamica.IndexOf(int.Parse(Console.ReadLine()));
+                int valor = LeerEntero("Ingresa el valor a buscar: ");
+                int posicion = listaDinamica.IndexOf(valor);
 
                 if (posicion != -1)
                     Console.WriteLine($"El valor se encuentra en la posicion: {posicion}");
@@ -100,7 +113,10 @@ class Program
                 foreach (int item in listaDinamica) Console.WriteLine(item);
                 Console.WriteLine();
             }
-
+            else if (opcion != 5)
+            {
+                Console.WriteLine("Opcion no valida. Elige un numero del 1 al 5.");
+            }
         }
 
         // etapa 4 ALGORITMOS DE ORDENAMIENTO
@@ -153,6 +169,27 @@ class Program
         Console.WriteLine();
 
         Console.ReadLine();
+    }
+
+    static int LeerEntero(string mensaje)
+    {
+        while (true)
+        {
+            Console.Write(mensaje);
+            string? entrada = Console.ReadLine();
+
+            if (entrada is null)
+            {
+                throw new InvalidOperationException("No se recibió una entrada.");
+            }
+
+            if (int.TryParse(entrada, out int numero))
+            {
+                return numero;
+            }
+
+            Console.WriteLine("Entrada no válida. Ingresa un número entero.");
+        }
     }
 }
     
